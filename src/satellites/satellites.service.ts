@@ -15,7 +15,7 @@ export class SatellitesService {
         if (response.data.info.transactionscount <= 1000) {
           return response.data === null ? 'No satellites found' : response.data;
         } else {
-          return 'requests per hour exceeded';
+          throw new Error('requests per hour exceeded');
         }
       })
       .catch((error) => {
