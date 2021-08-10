@@ -12,7 +12,11 @@ export class SatellitesService {
         `https://api.n2yo.com/rest/v1/satellite/above/${lat}/${lng}/0/70/52/&apiKey=${this.apiKey}`,
       )
       .then((response) => {
-        return response.data === null ? 'No satellites found' : response.data;
+        if (response.data.info.transactionscount <= 1000) {
+          return response.data === null ? 'No satellites found' : response.data;
+        } else {
+          return 'requests per hour exceeded';
+        }
       })
       .catch((error) => {
         return error;
