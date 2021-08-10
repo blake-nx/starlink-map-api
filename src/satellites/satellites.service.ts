@@ -12,9 +12,10 @@ export class SatellitesService {
         `https://api.n2yo.com/rest/v1/satellite/above/${lat}/${lng}/0/70/52/&apiKey=${this.apiKey}`,
       )
       .then((response) => {
-        return response.data === null
-          ? 'No satellites found'
-          : response.data.above;
+        return response.data === null ? 'No satellites found' : response.data;
+      })
+      .catch((error) => {
+        return error;
       });
   };
   public getAboveSatellites(lat, lng) {
